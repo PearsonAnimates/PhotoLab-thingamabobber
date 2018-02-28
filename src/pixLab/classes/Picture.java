@@ -129,6 +129,7 @@ public class Picture extends SimplePicture
 	  Pixel[][] pixels = this.getPixels2D();
 	  int shiftAmount = (int) (.33 * pixels[0].length);
 	  int width = pixels[0].length;
+	  int GlitchPoint = 150;
 	  
 	  for (int row = 0; row < pixels.length; row ++)
 	  {
@@ -146,7 +147,16 @@ public class Picture extends SimplePicture
 	  }
 	  
 	  
-	  
+	  for (int row = 1; row < 100; row++)
+	  {
+		for (int col = 1; col < GlitchPoint; col++)
+		{
+			leftPixel = pixels[row][col];      
+			rightPixel = pixels[row][GlitchPoint - col + GlitchPoint];
+			rightPixel.setRed(rightPixel.getRed());
+			rightPixel.setBlue(rightPixel.getBlue());
+		}
+	  }
   }
   
   /** Mirror just part of a picture of a temple */
