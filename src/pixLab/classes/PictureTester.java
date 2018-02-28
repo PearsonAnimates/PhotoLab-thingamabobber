@@ -44,6 +44,14 @@ public class PictureTester
     temple.explore();
   }
   
+  public static void testGlitchArt()
+  {
+	  Picture sample = new Picture("trollfaceLol.jpg");
+	  sample.explore();
+	  sample.glitchArt();
+	  sample.explore();
+  }
+  
   /** Method to test the collage method */
   public static void testCollage()
   {
@@ -74,6 +82,7 @@ public class PictureTester
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
+    testGlitchArt();
     testMirrorVertical();
     //testMirrorTemple();
     //testMirrorArms();

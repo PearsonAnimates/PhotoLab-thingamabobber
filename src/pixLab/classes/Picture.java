@@ -119,6 +119,36 @@ public class Picture extends SimplePicture
     } 
   }
   
+  public void filter()
+  {
+	  
+  }
+  
+  public void glitchArt()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int shiftAmount = (int) (.33 * pixels[0].length);
+	  int width = pixels[0].length;
+	  
+	  for (int row = 0; row < pixels.length; row ++)
+	  {
+		  Color [] currentColors = new Color[pixels[0].length];
+		  
+		  for (int col = 0; col < pixels[row].length; col++)
+		  {
+			  currentColors[col] = pixels[row][col].getColor();
+		  }
+		  
+		  for (int col = 0; col < pixels[0].length; col++)
+		  {
+			  pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
+		  }
+	  }
+	  
+	  
+	  
+  }
+  
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
@@ -138,7 +168,9 @@ public class Picture extends SimplePicture
         leftPixel = pixels[row][col];      
         rightPixel = pixels[row]                       
                          [mirrorPoint - col + mirrorPoint];
-        rightPixel.setColor(leftPixel.getColor());
+        //rightPixel.setColor(leftPixel.getColor());
+        rightPixel.setRed(leftPixel.getRed());
+        rightPixel.setBlue(leftPixel.getBlue());
       }
     }
   }
@@ -191,7 +223,9 @@ public class Picture extends SimplePicture
 			  toPixel = toPixels[toRow][toCol];
 			  if(!fromPixel.isTransparent())
 			  {
-				  toPixel.setColor(fromPixel.getColor());
+				  toPixel.setRed(fromPixel.getRed());
+				  toPixel.setBlue(fromPixel.getBlue());
+				  toPixel.setGreen(fromPixel.getGreen());				  
 			  }
 			  fromCol++;
 		  }
